@@ -1,0 +1,67 @@
+{
+  "name": "ts-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "start": "ts-node dist/index.js",
+    "start:debug": "ts-node --inspect-brk dist/index.js",
+    "test": "mocha --config .mocharc.yaml",
+    "test:cov": "nyc mocha --config .mocharc.yaml",
+    "test:debug": "mocha --inspect-brk --config .mocharc.yaml",
+    "test:int": "mocha --config .mocharc.int.yaml",
+    "test:int:cov": "nyc mocha --config .mocharc.int.yaml",
+    "test:int:debug": "mocha --inspect-brk --config .mocharc.int.yaml",
+    "docker:build": "docker build -t ts-template .",
+    "docker:run": "docker run --env-file=.env --rm -p 8081:8081 --name ts-template ts-template",
+    "docker:run:watch": "tsc-watch --onSuccess \"npm run docker:buildAndRun\"",
+    "docker:buildAndRun": "npm run docker:build && npm run docker:run",
+    "docker:stop": "docker rm -f ts-template"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@testdeck/mocha": "^0.3.2",
+    "@types/chai": "^4.3.4",
+    "@types/fs-extra": "^9.0.13",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.10",
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0",
+    "nyc": "^15.1.0",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.1",
+    "tsc-watch": "^5.0.3",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "boolean": "^3.2.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "fs-extra": "^11.1.0",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.39",
+    "reflect-metadata": "^0.1.13"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "require": [
+      "ts-node/register/transpile-only"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.test.ts",
+      "coverage",
+      "bin"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ]
+  }
+}
