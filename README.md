@@ -1,6 +1,6 @@
 # YouTube Remove Watch Later
 
-A Node app that allows you to remove 'Watch Later' videos from your account.
+A Puppeteer script that allows you to remove `Watch Later` videos from your YouTube account with minimal manual intervention.
 
 ## Usage
 
@@ -18,7 +18,10 @@ npm install
 npm start
 ```
 
-To keep the last N number of videos in the playlist, edit `index.ts`:
+While running, you will have to complete the multifactor authentication step manually. Have your device nearby, so that can complete the authentication. Once
+completed, navigate back to the terminal in which you ran this app and enter `y` to continue the video removal.
+
+To keep the last `N` number of videos in the playlist, edit `index.ts`:
 
 ```ts
 async function main() {
