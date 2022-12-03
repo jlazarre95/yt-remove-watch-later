@@ -44,15 +44,15 @@ async function botHelper(page: Page, skip: number) {
   cursor.toggleRandomMove(true);
 
   await page.goto('https://www.youtube.com');
-  await page.waitForTimeout(random(1_000, 10_000));
+  await page.waitForTimeout(random(3_000, 10_000));
 
   await cursor.click(`a[aria-label='Sign in']`)
-  await page.waitForTimeout(random(1_000, 10_000));
+  await page.waitForTimeout(random(3_000, 10_000));
 
   await cursor.click(`input[type='email']`);
   await page.keyboard.type(email);
   await page.keyboard.press('Enter');
-  await page.waitForTimeout(random(1_000, 10_000));
+  await page.waitForTimeout(random(3_000, 10_000));
 
   await cursor.click(`input[type='password']`);
   await page.keyboard.type(password);
@@ -69,7 +69,12 @@ async function botHelper(page: Page, skip: number) {
   });
 
   await page.goto(`https://www.youtube.com/playlist?list=WL`);
-  await page.waitForTimeout(random(1_000, 10_000));
+  await page.waitForTimeout(random(3_000, 10_000));
+
+  await cursor.click('yt-dropdown-menu[icon-label="Sort"]');
+  await cursor.click(`xpath///div[contains(text(), 'Date added (newest)')]`);
+  
+  await page.waitForTimeout(random(3_000, 10_000));
 
   cursor.toggleRandomMove(false);
   let i = 1;
