@@ -68,15 +68,17 @@ async function botHelper(page: Page, skip: number) {
     });
   });
 
+  cursor.toggleRandomMove(false);
+
   await page.goto(`https://www.youtube.com/playlist?list=WL`);
   await page.waitForTimeout(random(3_000, 10_000));
 
   await cursor.click('yt-dropdown-menu[icon-label="Sort"]');
+  await page.waitForTimeout(random(2_000, 5_000));
+
   await cursor.click(`xpath///div[contains(text(), 'Date added (newest)')]`);
-  
   await page.waitForTimeout(random(3_000, 10_000));
 
-  cursor.toggleRandomMove(false);
   let i = 1;
   while(true) {
     console.log(`Removing video ${i}...`);
